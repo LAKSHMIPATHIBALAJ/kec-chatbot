@@ -38,13 +38,9 @@ from src.utils import (
     RAW_DOCUMENTS_DIR, VECTOR_STORE_DIR, CHAT_HISTORY_DB_PATH,
     APP_TITLE, APP_ICON
 )
-from src.chat_history_manager import ChatHistoryManager
-from src.document_processor import process_documents
-from src.chatbot_logic import (
-    get_rag_response,
-    index_documents_to_chromadb,
-    get_chroma_collection
-)
+# from src.chat_history_manager import ChatHistoryManager
+# from src.document_processor import process_documents
+from src.chatbot_logic import get_rag_response
 
 # -------------------------------------------------
 # Streamlit Page Configuration
@@ -69,33 +65,33 @@ if "chat_history_manager" not in st.session_state:
 # -------------------------------------------------
 # Initialize RAG & Index Documents (RUN ONLY ONCE)
 # -------------------------------------------------
-@st.cache_resource
-def initialize_rag_components_and_index_docs():
-    """
-    Initializes ChromaDB collection and indexes documents
-    ONLY if the collection is empty.
-    """
-    try:
-        collection = get_chroma_collection()
+# @st.cache_resource
+# def initialize_rag_components_and_index_docs():
+#     """
+#     Initializes ChromaDB collection and indexes documents
+#     ONLY if the collection is empty.
+#     """
+#     try:
+#         collection = get_chroma_collection()
 
-        # ✅ IMPORTANT FIX:
-        # Index documents ONLY if collection is empty
-        if collection.count() == 0:
-            all_processed_docs = process_documents(RAW_DOCUMENTS_DIR)
-            if all_processed_docs:
-                index_documents_to_chromadb(all_processed_docs)
-                print(f"Indexed {len(all_processed_docs)} documents into ChromaDB.")
-            else:
-                print("No documents found to index.")
-        else:
-            print("ChromaDB already initialized. Skipping re-indexing.")
+#         # ✅ IMPORTANT FIX:
+#         # Index documents ONLY if collection is empty
+#         if collection.count() == 0:
+#             all_processed_docs = process_documents(RAW_DOCUMENTS_DIR)
+#             if all_processed_docs:
+#                 index_documents_to_chromadb(all_processed_docs)
+#                 print(f"Indexed {len(all_processed_docs)} documents into ChromaDB.")
+#             else:
+#                 print("No documents found to index.")
+#         else:
+#             print("ChromaDB already initialized. Skipping re-indexing.")
 
-        return True
+#         return True
 
-    except Exception as e:
-        st.error(f"Error initializing knowledge base: {e}")
-        print(f"Initialization error: {e}")
-        return False
+#     except Exception as e:
+#         st.error(f"Error initializing knowledge base: {e}")
+#         print(f"Initialization error: {e}")
+#         return False
 
 # -------------------------------------------------
 # Main App UI
@@ -108,7 +104,7 @@ st.divider()
 if not st.session_state.get("rag_pipeline_and_indexing_done", False):
     with st.spinner("Initializing knowledge base..."):
         st.session_state.rag_pipeline_and_indexing_done = (
-            initialize_rag_components_and_index_docs()
+            # initialize_rag_components_and_index_docs()
         )
 
 # -------------------------------------------------

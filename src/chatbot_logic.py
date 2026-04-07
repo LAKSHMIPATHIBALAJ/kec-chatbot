@@ -40,7 +40,7 @@ VECTOR_STORE_DIR.mkdir(parents=True, exist_ok=True)
 #         _chroma_client = chromadb.PersistentClient(path=str(VECTOR_STORE_DIR))
 #     return _chroma_client
 # def get_rag_response(query: str) -> str:
-#     return f"You asked: {query}\n\n⚠️ Knowledge base is temporarily disabled for deployment."
+#     return f"You asked: {query}\n\n Knowledge base is temporarily disabled for deployment."
 
 # def get_embedding_function():
 #     global _embedding_function
