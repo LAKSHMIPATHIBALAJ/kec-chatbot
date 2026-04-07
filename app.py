@@ -146,9 +146,9 @@ if user_query := st.chat_input("Ask a question about university admissions..."):
     st.session_state.messages.append(
         {"role": "user", "content": user_query}
     )
-    st.session_state.chat_history_manager.save_message(
-        st.session_state.session_id, "user", user_query
-    )
+    # st.session_state.chat_history_manager.save_message(
+    #     st.session_state.session_id, "user", user_query
+    # )
 
     with st.chat_message("user"):
         st.markdown(user_query)
