@@ -1,13 +1,9 @@
-streamlit==1.32.0
-chromadb==0.4.24
-sentence-transformers==2.2.2
+streamlit
+sentence-transformers
 langchain==0.0.350
 requests
 python-dotenv
-protobuf==3.20.3
 PyMuPDF
 python-docx
 openpyxl
 tiktoken
-pydantic==1.10.13
-typing-extensions==4.5.0

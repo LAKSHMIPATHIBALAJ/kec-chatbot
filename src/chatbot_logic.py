@@ -2,11 +2,11 @@ import os
 import json
 import uuid
 import requests
-import chromadb
+# import chromadb
 from pathlib import Path
 from typing import List, Dict, Tuple
 from dotenv import load_dotenv
-from chromadb.utils import embedding_functions
+# from chromadb.utils import embedding_functions
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # -------------------------------------------------
@@ -27,19 +27,20 @@ VECTOR_STORE_DIR.mkdir(parents=True, exist_ok=True)
 # -------------------------------------------------
 # Global Cached Objects
 # -------------------------------------------------
-_chroma_client = None
-_chroma_collection = None
-_embedding_function = None
+# _chroma_client = None
+# _chroma_collection = None
+# _embedding_function = None
 
-# -------------------------------------------------
-# ChromaDB Helpers
-# -------------------------------------------------
-def get_chroma_client():
-    global _chroma_client
-    if _chroma_client is None:
-        _chroma_client = chromadb.PersistentClient(path=str(VECTOR_STORE_DIR))
-    return _chroma_client
-
+# # -------------------------------------------------
+# # ChromaDB Helpers
+# # -------------------------------------------------
+# def get_chroma_client():
+#     global _chroma_client
+#     if _chroma_client is None:
+#         _chroma_client = chromadb.PersistentClient(path=str(VECTOR_STORE_DIR))
+#     return _chroma_client
+def get_rag_response(query: str) -> str:
+    return f"You asked: {query}\n\n⚠️ Knowledge base is temporarily disabled for deployment."
 
 def get_embedding_function():
     global _embedding_function
