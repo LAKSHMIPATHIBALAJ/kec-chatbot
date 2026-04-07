@@ -61,7 +61,7 @@ if "session_id" not in st.session_state:
 
 if "chat_history_manager" not in st.session_state:
     # st.session_state.chat_history_manager = ChatHistoryManager()
-    st.session_state.chat_history_manager._initialize_db()
+    # st.session_state.chat_history_manager._initialize_db()
 
 # -------------------------------------------------
 # Initialize RAG & Index Documents (RUN ONLY ONCE)
@@ -97,9 +97,9 @@ if "chat_history_manager" not in st.session_state:
 # -------------------------------------------------
 # Main App UI
 # -------------------------------------------------
-st.markdown("## 🤖 KEC AI Chatbot")
-st.caption("Ask anything about Kuppam Engineering College 🎓")
-st.divider()
+ st.markdown("## 🤖 KEC AI Chatbot")
+ st.caption("Ask anything about Kuppam Engineering College 🎓")
+ st.divider()
 
 # Initialize RAG pipeline once
 if not st.session_state.get("rag_pipeline_and_indexing_done", False):
@@ -126,24 +126,14 @@ if st.sidebar.button("Clear Chat History"):
 # Chat History Initialization
 # -------------------------------------------------
 if "messages" not in st.session_state:
-    st.session_state.messages = (
-        st.session_state.chat_history_manager.get_history(
-            st.session_state.session_id
-        )
+    greeting = (
+        "👋 Hi! I'm your KEC Assistant.\n\n"
+        "Ask me about admissions, courses, fees, hostel, placements and more! 🎓"
     )
 
-    if not st.session_state.messages:
-        greeting = (
-            "👋 Hi! I'm your KEC Assistant.\n\n"
-    "Ask me about admissions, courses, fees, hostel, placements and more! 🎓"
-        )
-        st.session_state.messages.append(
-            {"role": "assistant", "content": greeting}
-        )
-        st.session_state.chat_history_manager.save_message(
-            st.session_state.session_id, "assistant", greeting
-        )
-
+    st.session_state.messages = [
+        {"role": "assistant", "content": greeting}
+    ]
 # -------------------------------------------------
 # Display Chat Messages
 # -------------------------------------------------
