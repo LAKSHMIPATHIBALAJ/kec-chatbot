@@ -115,13 +115,9 @@ st.sidebar.header("📚 Knowledge Base")
 st.sidebar.write("Documents are loaded from `data/raw_documents`.")
 
 st.sidebar.markdown("---")
-if st.sidebar.button("Clear Chat History"):
-    st.session_state.chat_history_manager.clear_history(
-        st.session_state.session_id
-    )
+if st.sidebar.button("Clear Chat"):
     st.session_state.messages = []
     st.rerun()
-
 # -------------------------------------------------
 # Chat History Initialization
 # -------------------------------------------------
