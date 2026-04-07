@@ -178,7 +178,7 @@ st.sidebar.markdown("---")
 st.sidebar.subheader("App Info")
 st.sidebar.write(f"Session ID: `{st.session_state.session_id}`")
 # st.sidebar.write(f"Knowledge Base Docs: `{get_chroma_collection().count()}`")
-st.sidebar.write(f"Chat History DB: `{CHAT_HISTORY_DB_PATH.name}`")
+# st.sidebar.write(f"Chat History DB: `{CHAT_HISTORY_DB_PATH.name}`")
 st.sidebar.write(f"Data Directory: `{RAW_DOCUMENTS_DIR.name}`")
 
 st.sidebar.markdown("---")
