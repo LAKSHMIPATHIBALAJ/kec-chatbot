@@ -4,7 +4,7 @@ import fitz  # PyMuPDF for PDF
 from docx import Document # python-docx for DOCX
 import openpyxl # openpyxl for XLSX
 from PIL import Image # Pillow for image manipulation
-import pytesseract # pytesseract for OCR
+# import pytesseract # pytesseract for OCR
 from typing import List, Tuple, Dict, Union
 from io import BytesIO
 from pathlib import Path
@@ -17,20 +17,8 @@ from src.utils import RAW_DOCUMENTS_DIR
 # Example for Windows: r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 # Example for Linux/macOS (if not in PATH): '/usr/local/bin/tesseract'
 # If Tesseract is in your system's PATH, you can leave this as None.
-TESSERACT_CMD_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-if TESSERACT_CMD_PATH:
-    pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD_PATH
-    print(f"Pytesseract command path set to: {TESSERACT_CMD_PATH}")
-else:
-    print("Pytesseract command path is not explicitly set. Assuming Tesseract is in system PATH.")
-    try:
-        # Verify Tesseract is accessible
-        pytesseract.get_tesseract_version()
-        print("Tesseract OCR engine found in system PATH.")
-    except pytesseract.TesseractNotFoundError:
-        print("WARNING: Tesseract OCR engine not found. Image processing (OCR) will not work.")
-        print("Please install Tesseract OCR and/or set TESSERACT_CMD_PATH in document_processor.py.")
+print("Please install Tesseract OCR and/or set TESSERACT_CMD_PATH in document_processor.py.")
 
 
 def extract_text_from_pdf(pdf_path: Path) -> str:
@@ -78,18 +66,17 @@ def extract_text_from_xlsx(xlsx_path: Path) -> str:
     return text
 
 def extract_text_from_image(image_path: Path) -> str:
-    """Extracts text from an image file using Tesseract OCR."""
-    text = ""
+    """
+    Extracts text from an image file.
+    NOTE: OCR is disabled for deployment (Streamlit Cloud doesn't support Tesseract).
+    """
     try:
         img = Image.open(image_path)
-        text = pytesseract.image_to_string(img)
-        print(f"Extracted text from Image (OCR): {image_path.name}")
-    except pytesseract.TesseractNotFoundError:
-        print(f"Tesseract OCR engine not found. Skipping OCR for {image_path.name}.")
-        text = "" # Ensure text is empty if Tesseract isn't found
+        print(f"OCR skipped for image: {image_path.name}")
+        return ""
     except Exception as e:
-        print(f"Error extracting text from image {image_path.name}: {e}")
-    return text
+        print(f"Error opening image {image_path.name}: {e}")
+        return ""
 
 def process_documents(directory_path: Path = RAW_DOCUMENTS_DIR) -> List[Tuple[str, Dict]]:
     """
