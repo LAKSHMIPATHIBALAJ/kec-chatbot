@@ -1,6 +1,6 @@
-streamlit
+streamlit==1.32.0
 chromadb==0.4.24
-sentence-transformers
+sentence-transformers==2.2.2
 langchain==0.0.350
 requests
 python-dotenv
@@ -10,3 +10,4 @@ python-docx
 openpyxl
 tiktoken
 pydantic==1.10.13
+typing-extensions==4.5.0
