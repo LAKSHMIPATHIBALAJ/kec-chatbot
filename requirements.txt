@@ -9,3 +9,4 @@ PyMuPDF
 python-docx
 openpyxl
 tiktoken
+pydantic==1.10.13
