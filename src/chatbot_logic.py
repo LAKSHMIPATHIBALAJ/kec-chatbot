@@ -3,6 +3,7 @@ import json
 import uuid
 import requests
 import streamlit as st
+st.write("API KEY:", st.secrets.get("OPENROUTER_API_KEY"))
 from pathlib import Path
 from typing import List, Dict, Tuple
 
