@@ -1,7 +1,7 @@
 streamlit
 chromadb==0.4.24
 sentence-transformers
-langchain
+langchain==0.0.350
 requests
 python-dotenv
 protobuf==3.20.3
