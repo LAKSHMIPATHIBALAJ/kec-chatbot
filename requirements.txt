@@ -7,3 +7,4 @@ python-dotenv
 protobuf==3.20.3
 PyMuPDF
 python-docx
+openpyxl
