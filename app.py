@@ -108,6 +108,8 @@ if not st.session_state.get("rag_pipeline_and_indexing_done", False):
 # -------------------------------------------------
 # Sidebar
 # -------------------------------------------------
+st.sidebar.title("🎓 KEC AI Assistant")
+st.sidebar.caption("Smart Chatbot")
 st.sidebar.header("📚 Knowledge Base")
 st.sidebar.write("Documents are loaded from `data/raw_documents`.")
 
