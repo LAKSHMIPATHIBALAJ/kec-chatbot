@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import List, Dict, Tuple
 from dotenv import load_dotenv
 # from chromadb.utils import embedding_functions
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+# from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # -------------------------------------------------
 # Load environment variables
