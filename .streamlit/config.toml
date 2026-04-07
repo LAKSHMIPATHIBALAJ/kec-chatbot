@@ -1,0 +1,7 @@
+[theme]
+base="light"
+primaryColor="#F63366"      # A common Streamlit accent color (pink/red)
+backgroundColor="#FFFFFF"    # White background
+secondaryBackgroundColor="#F0F2F6" # Light grey for secondary elements
+textColor="#262730"          # Dark text
+font="sans serif"
