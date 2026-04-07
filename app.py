@@ -42,6 +42,7 @@ from src.utils import (
 # from src.document_processor import process_documents
 from src.chatbot_logic import get_rag_response
 
+
 # -------------------------------------------------
 # Streamlit Page Configuration
 # -------------------------------------------------
@@ -59,7 +60,7 @@ if "session_id" not in st.session_state:
     st.session_state.session_id = "default_user_session"
 
 if "chat_history_manager" not in st.session_state:
-    st.session_state.chat_history_manager = ChatHistoryManager()
+    # st.session_state.chat_history_manager = ChatHistoryManager()
     st.session_state.chat_history_manager._initialize_db()
 
 # -------------------------------------------------
@@ -193,7 +194,7 @@ if user_query := st.chat_input("Ask a question about university admissions..."):
 st.sidebar.markdown("---")
 st.sidebar.subheader("App Info")
 st.sidebar.write(f"Session ID: `{st.session_state.session_id}`")
-st.sidebar.write(f"Knowledge Base Docs: `{get_chroma_collection().count()}`")
+# st.sidebar.write(f"Knowledge Base Docs: `{get_chroma_collection().count()}`")
 st.sidebar.write(f"Chat History DB: `{CHAT_HISTORY_DB_PATH.name}`")
 st.sidebar.write(f"Data Directory: `{RAW_DOCUMENTS_DIR.name}`")
 
