@@ -34,10 +34,7 @@ textarea {
 """, unsafe_allow_html=True)
 from pathlib import Path
 
-from src.utils import (
-    RAW_DOCUMENTS_DIR, VECTOR_STORE_DIR, CHAT_HISTORY_DB_PATH,
-    APP_TITLE, APP_ICON
-)
+from src.utils import APP_TITLE, APP_ICON, RAW_DOCUMENTS_DIR
 # from src.chat_history_manager import ChatHistoryManager
 # from src.document_processor import process_documents
 from src.chatbot_logic import get_rag_response
@@ -59,7 +56,7 @@ st.set_page_config(
 if "session_id" not in st.session_state:
     st.session_state.session_id = "default_user_session"
 
-if "chat_history_manager" not in st.session_state:
+# if "chat_history_manager" not in st.session_state:
     # st.session_state.chat_history_manager = ChatHistoryManager()
     # st.session_state.chat_history_manager._initialize_db()
 
@@ -97,9 +94,9 @@ if "chat_history_manager" not in st.session_state:
 # -------------------------------------------------
 # Main App UI
 # -------------------------------------------------
- st.markdown("## 🤖 KEC AI Chatbot")
- st.caption("Ask anything about Kuppam Engineering College 🎓")
- st.divider()
+st.markdown("## 🤖 KEC AI Chatbot")
+st.caption("Ask anything about Kuppam Engineering College 🎓")
+st.divider()
 
 # Initialize RAG pipeline once
 if not st.session_state.get("rag_pipeline_and_indexing_done", False):
@@ -170,9 +167,9 @@ if user_query := st.chat_input("Ask a question about university admissions..."):
             st.session_state.messages.append(
                 {"role": "assistant", "content": bot_response}
             )
-            st.session_state.chat_history_manager.save_message(
-                st.session_state.session_id, "assistant", bot_response
-            )
+            # st.session_state.chat_history_manager.save_message(
+            #     st.session_state.session_id, "assistant", bot_response
+            # )
 
 # -------------------------------------------------
 # Footer / Debug Info
