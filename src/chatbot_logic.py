@@ -2,25 +2,15 @@ import os
 import json
 import uuid
 import requests
-# import chromadb
+import streamlit as st
 from pathlib import Path
 from typing import List, Dict, Tuple
-from dotenv import load_dotenv
-# from chromadb.utils import embedding_functions
-# from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-# -------------------------------------------------
-# Load environment variables
-# -------------------------------------------------
-load_dotenv()
+VECTOR_STORE_DIR = Path("data/vector_store/chroma_db_data")
+CHROMA_COLLECTION_NAME = "university_admission_docs"
 
-# -------------------------------------------------
-# Configuration
-# -------------------------------------------------
-VECTOR_STORE_DIR = Path(os.getenv("VECTOR_STORE_DIR", "data/vector_store/chroma_db_data"))
-CHROMA_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION_NAME", "university_admission_docs")
-LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "mistralai/mistral-7b-instruct")
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_API_KEY = st.secrets["OPENROUTER_API_KEY"]
+LLM_MODEL_NAME = st.secrets["LLM_MODEL_NAME"]
 
 VECTOR_STORE_DIR.mkdir(parents=True, exist_ok=True)
 
